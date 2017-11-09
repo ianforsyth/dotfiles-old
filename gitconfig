@@ -1,0 +1,31 @@
+[user]
+	name = Ian Forsyth
+	email = ian@ianforsyth.com
+[alias]
+  co = checkout
+  ac = !git add -A && git commit
+  bc = cherry -v master --abbrev
+  amend = !git add . && git commit --amend --no-edit
+  s = status
+  phead = push origin HEAD
+  bd = branch -D
+  cleanup = !git co master && git pull && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
+  back = reset --soft HEAD~1
+  rim = rebase -i master
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+[filter "hawser"]
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[core]
+  excludesfile = /Users/ian.forsyth/.gitignore
