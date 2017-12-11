@@ -13,4 +13,4 @@ alias tailreplica='heroku logs --tail -a vts-production-replica'
 
 alias vts='cd ~/workspace/vts'
 
-export PS1='$(basename $(dirname $PWD)) → '
+export PS1='\W → '
