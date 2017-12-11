@@ -1,6 +1,6 @@
 [user]
-	name = Ian Forsyth
-	email = ian@ianforsyth.com
+  name = Ian Forsyth
+  email = ian@ianforsyth.com
 [alias]
   co = checkout
   ac = !git add -A && git commit
