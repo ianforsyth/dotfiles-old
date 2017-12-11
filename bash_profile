@@ -11,5 +11,6 @@ alias taildev='tail -f log/development.log'
 alias tailtest='tail -f log/test.log'
 alias tailreplica='heroku logs --tail -a vts-production-replica'
 
-alias vts='cd ~/workspace/viewthespace'
+alias vts='cd ~/workspace/vts'
 
+export PS1='$(basename $(dirname $PWD)) → '
