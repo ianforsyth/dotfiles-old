@@ -27,9 +27,12 @@ filetype plugin indent on    " required
 " Asks to save before switching files instead of throwing an error
 set confirm
 
-" Line numbers are relative to cursor position, except current
-set number relativenumber
+" Show partial command in the last line of the screen
+set showcmd
 
+" Line numbers
+set number
+"
 " Show lines beyond the top and bottom of cursor
 set scrolloff=3
 
@@ -48,6 +51,13 @@ set hlsearch
 " Softtabs, 2 spaces
 set expandtab
 set tabstop=2
+set shiftwidth=2
+set autoindent
+set smartindent
+
+" Make it obvious where 100 characters is
+set textwidth=100
+set colorcolumn=+1
 
 " Git gutter check time
 set updatetime=250
@@ -63,16 +73,6 @@ let g:gitgutter_sign_modified = '∙'
 let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
 
-" CtrlSF opens in full screen
-let g:ctrlsf_winsize = '100%'
-
-" Function to toggle full screen pane
-let g:toggle_window_expand = 0
-function! ToggleWindowExpand()
-  let g:toggle_window_expand = !g:toggle_window_expand
-  return g:toggle_window_expand
-endfunction
-
 " Syntax highlighting and color scheme
 syntax on
 if (has("termguicolors"))
@@ -81,7 +81,7 @@ endif
 colorscheme OceanicNext
 
 " ALE syntax checker settings
-let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 let g:ale_sign_error = '»'
 
 " Settings for lightline status line
@@ -112,12 +112,10 @@ let mapleader=" "
 inoremap jj <esc>:w<enter>
 nmap <C-j> :m +1 <enter>
 nmap <C-k> :m -2 <enter>
-nmap <C-l> <C-W><C-W>
 noremap <Leader>t :Files<enter>
 nnoremap <Leader>s :Vexplore <enter>
 nnoremap <Leader>f :CtrlSF
 nnoremap <Leader>c :let @+=expand('%:p')<cr>
-nnoremap <expr> <Leader><enter> ToggleWindowExpand() ? '<C-W><C-_>' : '<C-W><C-=>'
 
 noremap <up> <nop>
 noremap <down> <nop>
