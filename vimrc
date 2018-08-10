@@ -15,10 +15,10 @@ Plugin 'mhartington/oceanic-next'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'w0rp/ale'
-Plugin 'dyng/ctrlsf.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
+Plugin 'dyng/ctrlsf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,6 +62,9 @@ set colorcolumn=+1
 " Git gutter check time
 set updatetime=250
 
+" CtrlSF is erroring out in async mode - bandaid
+let g:ctrlsf_search_mode = 'sync'
+
 " Settings for netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -102,8 +105,8 @@ let g:lightline = {
 \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 \}
 
-" Remove trailing whitespace before save
-autocmd BufWritePre * %s/\s\+$//e
+" Remove trailing whitespace before save except in this vimrc (for ex commands followed by a space)
+autocmd BufWritePre * if index(['vim'], &ft) < 0 | %s/\s\+$//e
 
 " Set leader to space bar
 let mapleader=" "
@@ -114,7 +117,7 @@ nmap <C-j> :m +1 <enter>
 nmap <C-k> :m -2 <enter>
 noremap <Leader>t :Files<enter>
 nnoremap <Leader>s :Vexplore <enter>
-nnoremap <Leader>f :CtrlSF
+nnoremap <Leader>f :CtrlSF 
 nnoremap <Leader>c :let @+=expand('%:p')<cr>
 
 noremap <up> <nop>
