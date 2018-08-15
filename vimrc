@@ -14,6 +14,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'mhartington/oceanic-next'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'w0rp/ale'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
@@ -63,12 +64,13 @@ set colorcolumn=+1
 set updatetime=250
 
 " CtrlSF is erroring out in async mode - bandaid
-let g:ctrlsf_search_mode = 'sync'
+" let g:ctrlsf_search_mode = 'sync'
 
 " Settings for netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 20
 
 " GitGutter styling to use · instead of +/-
 let g:gitgutter_sign_added = '∙'
@@ -83,8 +85,11 @@ if (has("termguicolors"))
 endif
 colorscheme OceanicNext
 
-" ALE syntax checker settings
+" ALE syntax checker settings for VTS
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
+let g:ale_fix_on_save = 1
+let g:ale_set_highlights = 1
 let g:ale_sign_error = '»'
 
 " Settings for lightline status line
@@ -107,6 +112,9 @@ let g:lightline = {
 
 " Remove trailing whitespace before save except in this vimrc (for ex commands followed by a space)
 autocmd BufWritePre * if index(['vim'], &ft) < 0 | %s/\s\+$//e
+
+" Set fzf to respect gitignore
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Set leader to space bar
 let mapleader=" "
