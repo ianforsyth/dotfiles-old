@@ -7,7 +7,6 @@
   bc = cherry -v master --abbrev
   amend = !git add . && git commit --amend --no-edit
   s = status
-  phead = push origin HEAD
   bd = branch -D
   cleanup = !git co master && git pull && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
   back = reset --soft HEAD~1
@@ -29,3 +28,5 @@
   required = true
 [core]
   excludesfile = /Users/ian.forsyth/.gitignore
+[push]
+  default = current
