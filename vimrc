@@ -63,9 +63,6 @@ set colorcolumn=+1
 " Git gutter check time
 set updatetime=250
 
-" CtrlSF is erroring out in async mode - bandaid
-" let g:ctrlsf_search_mode = 'sync'
-
 " Settings for netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -116,11 +113,15 @@ autocmd BufWritePre * if index(['vim'], &ft) < 0 | %s/\s\+$//e
 " Set fzf to respect gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
+" Have CtrlSF autofocus the search window
+let g:ctrlsf_auto_focus = { 'at' : 'start' }
+let g:ctrlsf_position = 'bottom'
+
 " Set leader to space bar
 let mapleader=" "
 
 " Mappings
-inoremap jj <esc>:w<enter>
+" inoremap jj <esc>:w<enter>
 nmap <C-j> :m +1 <enter>
 nmap <C-k> :m -2 <enter>
 noremap <Leader>t :Files<enter>
