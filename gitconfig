@@ -6,6 +6,7 @@
   ac = !git add -A && git commit
   bc = cherry -v master --abbrev
   amend = !git add . && git commit --amend --no-edit
+  fixup = !sh -c 'REV=$(git rev-parse $1) && git add . && git commit --fixup $@ && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash $REV^' -
   s = status
   bd = branch -D
   cleanup = !git co master && git pull && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
