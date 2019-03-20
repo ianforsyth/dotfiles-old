@@ -20,6 +20,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'dyng/ctrlsf.vim'
+Plugin 'SirVer/ultisnips'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,6 +76,11 @@ let g:gitgutter_sign_modified = '∙'
 let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
 
+" UltiSnips configuration
+let g:UltiSnipsSnippetsDir = '~/.vim/mysnippets'
+let g:UltiSnipsSnippetDirectories=["mysnippets"]
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+
 " Syntax highlighting and color scheme
 syntax on
 if (has("termguicolors"))
@@ -121,7 +127,7 @@ let g:ctrlsf_position = 'bottom'
 let mapleader=" "
 
 " Mappings
-" inoremap jj <esc>:w<enter>
+inoremap jj <esc>:w<enter>
 nmap <C-j> :m +1 <enter>
 nmap <C-k> :m -2 <enter>
 noremap <Leader>t :Files<enter>
