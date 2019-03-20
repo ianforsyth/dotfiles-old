@@ -1,6 +1,6 @@
 [user]
-	name = Ian Forsyth
-	email = ian@ianforsyth.com
+  name = Ian Forsyth
+  email = ian@ianforsyth.com
 [alias]
   co = checkout
   ac = !git add -A && git commit
@@ -24,10 +24,10 @@
   required = true
 [filter "lfs"]
   clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
   required = true
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [push]
-	default = current
+  default = current
