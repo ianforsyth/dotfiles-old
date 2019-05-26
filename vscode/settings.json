@@ -1,0 +1,14 @@
+{
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "Nord",
+    "editor.cursorBlinking": "solid",
+    "editor.fontLigatures": true,
+    "workbench.sideBar.location": "left",
+    "workbench.activityBar.visible": false,
+    "editor.renderWhitespace": "none",
+    "breadcrumbs.enabled": false,
+    "editor.renderControlCharacters": false,
+    "workbench.statusBar.feedback.visible": false,
+    "editor.rulers": [100]
+}
