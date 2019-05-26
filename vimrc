@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-" Set the runtime path to invlude Vundle and initialize
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'mhartington/oceanic-next'
+Plugin 'arcticicestudio/nord-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -21,6 +22,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'neoclide/coc.nvim'
+Plugin 'djoshea/vim-autoread'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -64,7 +67,6 @@ set colorcolumn=+1
 " Git gutter check time
 set updatetime=250
 
-" Settings for netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -84,15 +86,14 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 " Syntax highlighting and color scheme
 syntax on
 if (has("termguicolors"))
- set termguicolors
+  set termguicolors
 endif
-colorscheme OceanicNext
+colorscheme nord
 
-" ALE syntax checker settings for VTS
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
+" ALE syntax checker settings
+let g:ale_linters = { 'javascript': ['eslint', 'flow'], 'ruby': ['rubocop'] }
 let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 let g:ale_fix_on_save = 1
-let g:ale_set_highlights = 1
 let g:ale_sign_error = '»'
 
 " Settings for lightline status line
