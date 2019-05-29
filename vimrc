@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'mhartington/oceanic-next'
-Plugin 'arcticicestudio/nord-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -28,6 +27,10 @@ Plugin 'djoshea/vim-autoread'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Use indents for folding and default to open
+set foldlevelstart=20
+set foldmethod=indent
 
 " Asks to save before switching files instead of throwing an error
 set confirm
@@ -88,7 +91,7 @@ syntax on
 if (has("termguicolors"))
   set termguicolors
 endif
-colorscheme nord
+colorscheme OceanicNext
 
 " ALE syntax checker settings
 let g:ale_linters = { 'javascript': ['eslint', 'flow'], 'ruby': ['rubocop'] }
@@ -103,7 +106,7 @@ let g:lightline = {
 \  'colorscheme': 'wombat',
 \  'active': {
 \   'left':[['mode', 'paste'],
-\          ['filename']
+\          ['relativepath']
 \    ],
 \    'right': [['lineinfo'], ['percent']]
 \  },
