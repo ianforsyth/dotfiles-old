@@ -7,6 +7,9 @@ alias vimrc='vim ~/.vimrc'
 alias profile='vim ~/.bash_profile'
 alias reloadprofile='source ~/.bash_profile'
 
+# Clean up squash and merge branches
+alias sweep='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase    =$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)    ) == "-"* || $(git branch --merged | grep -v "\* master" | grep $branch) ]] && git branch -D $branch; done'
+
 # Loop through autocomplete options, don't display list
 bind TAB:menu-complete
 
