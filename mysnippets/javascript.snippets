@@ -1,0 +1,126 @@
+snippet if
+if (${1:CONDITION}) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet t
+<${1:div}${2: className='${3:CLASS}'}>${0:${VISUAL}}</$1>
+endsnippet
+
+snippet tb
+<${1:div}${2: className='${3:CLASS}'}>
+	${0:${VISUAL}}
+</$1>
+endsnippet
+
+snippet cn
+className="${1}"
+endsnippet
+
+snippet cc
+// IF (`date +%m/%d/%y`):
+endsnippet
+
+snippet import
+import { ${1:component} } from '${4:${2:@${3:path}}/$1}';
+endsnippet
+
+snippet mui
+import ${1:component} from '@material-ui/core/$1';
+endsnippet
+
+snippet log
+console.log('IFLOG: ', ${1:'${2:here}'});
+endsnippet
+
+snippet debug
+debugger // eslint-disable-line
+endsnippet
+
+snippet it
+${1:it}('${2:ASSERT}', () => {
+	${3}
+});
+endsnippet
+
+snippet cdm
+componentDidMount() {
+	${0:CONTENTS}
+}
+endsnippet
+
+snippet cdu
+componentDidUpdate() {
+	${0:CONTENTS}
+}
+endsnippet
+
+snippet before
+beforeEach(() => {
+	${1}
+});
+endsnippet
+
+snippet rcc
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+export class ${1:NAME} extends Component {
+  state = {};
+
+  render() {
+    return (
+			<div>
+				${2:CONTENT}
+			</div>
+		);
+  }
+}
+
+$1.propTypes = {
+
+};
+endsnippet
+
+snippet rfc
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+export const StatelessComponents = ({}) => (
+  <Fragment>
+    <div>Stateless</div>
+    <div>Component</div>
+  </Fragment>
+);
+
+StatelessComponents.propTypes = {};
+endsnippet
+
+snippet spec
+import { ${1:Component} } from '${2:@${3:path}}/$1';
+
+let wrapper;
+
+${4:const props = {
+	${5:props}
+};
+
+}const buildComponent = componentBuilder(props, $1);
+
+describe('<$1/>', () => {
+	beforeEach(() => {
+		wrapper = buildComponent();
+	});
+
+	${6:it('renders', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	}context('${7:CONTEXT}', () => {
+		it('${8:IT}', () => {
+			${0}
+		});
+	});
+});
+endsnippet
