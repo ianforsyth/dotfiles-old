@@ -7,10 +7,19 @@ alias rmd='rm -rf i'
 alias vimrc='vim ~/.vimrc'
 alias profile='vim ~/.zshrc'
 alias reload='source ~/.zshrc'
+alias dcu='docker-compose up'
 
 alias emp='cd ~/workspace/employer'
 alias empc='cd ~/workspace/employer/client'
 alias emps='cd ~/workspace/employer/server'
+alias app='cd ~/workspace/application-flow'
+alias appc='cd ~/workspace/application-flow/client'
+alias apps='cd ~/workspace/application-flow/server'
+alias dbmi='cd ~/workspace/db-migrations'
+alias dbmo='cd ~/workspace/db-models'
+alias serverless='cd ~/workspace/serverless'
+alias ngrok='.~/workspace/ngrok http local.employer.expeditiondata.com:8043'
+alias pr='open "https://github.com/TheHiringEngine/${PWD##*/}/compare/$(git symbolic-ref --short -q HEAD)"'
 # --------------------
 
 # ----- Packages -----
@@ -38,4 +47,4 @@ fi
 # --------------------------
 
 # Clean up squash and merge branches
-alias sweep='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase    =$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)    ) == "-"* || $(git branch --merged | grep -v "\* master" | grep $branch) ]] && git branch -D $branch; done'
+alias sweep='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
