@@ -7,7 +7,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
@@ -25,7 +24,11 @@ call plug#begin()
   Plug 'dyng/ctrlsf.vim'                              " Global search
   Plug 'itchyny/lightline.vim'                        " Styled tabs and footer
   Plug 'SirVer/ultisnips'                             " Custom snippets
+  Plug 'djoshea/vim-autoread'                         " Reload files changed outside vim         "
 call plug#end()
+
+" Set leader to space bar
+let mapleader=" "
 
 " UltiSnips configuration
 let g:UltiSnipsSnippetsDir = '~/.vim/mysnippets'
@@ -54,7 +57,7 @@ let g:lightline = {
 let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-snippets'] " Install CoC extensions
 let b:coc_root_patterns = ['.env']                           " Use closest .env to determine working directory
 
-nmap <Leader>ac  <Plug>(coc-codeaction) 
+nmap <Leader>ac <Plug>(coc-codeaction) 
 nmap <leader>rn <Plug>(coc-rename) 
 nmap gd <Plug>(coc-definition)
 nmap gy <Plug>(coc-type-definition)
@@ -130,21 +133,21 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
-" Set leader to space bar
-let mapleader=" "
 " Mappings
-
 inoremap jj <esc>:w<enter>
 nmap <C-j> :m +1 <enter>
 nmap <C-k> :m -2 <enter>
 noremap <Leader>t :Files<enter>
 nnoremap <Leader>s :Vexplore <enter>
-nnoremap <Leader>f :CtrlSF
+nnoremap <Leader>f :CtrlSF ""<Left>
 nnoremap <leader>F :CtrlSF <c-r>=expand("<cword>")<cr><enter>
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q!<CR>
 nnoremap <Leader>c :let @+=expand('%:p')<cr>
+nnoremap <Leader>n :tabnew %:h/
 nnoremap <Leader>x :tabo<CR>
+nnoremap <leader><BS> :call delete(expand('%')) \| bdelete!<CR>
+nnoremap <leader>r :silent execute '![ -f "%:p" ] && open -R "%:p" \|\| open "%:p:h"'<CR>
 
 noremap <up> <nop>
 noremap <down> <nop>
