@@ -8,7 +8,7 @@ type Props = InputProps & ReduxProps & DispatchProps;
 endsnippet
 
 snippet us
-const [${1:name}, set$1] = useState<${2:type}>(${3:default});
+const [${1:name}, set${1/.*/\u$0/}] = useState<${2:type}>(${3:default});
 endsnippet
 
 snippet ci
