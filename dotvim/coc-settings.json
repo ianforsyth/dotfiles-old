@@ -1,3 +1,4 @@
 {
-  "esling.autoFixOnSave": true
+  "esling.autoFixOnSave": true,
+  "suggest.noselect": false
 }
