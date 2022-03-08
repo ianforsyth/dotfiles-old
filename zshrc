@@ -7,19 +7,23 @@ alias rmd='rm -rf i'
 alias vimrc='vim ~/.vimrc'
 alias profile='vim ~/.zshrc'
 alias reload='source ~/.zshrc'
-alias dcu='docker-compose up'
 
-alias emp='cd ~/workspace/employer'
-alias empc='cd ~/workspace/employer/client'
-alias emps='cd ~/workspace/employer/server'
-alias app='cd ~/workspace/application-flow'
-alias appc='cd ~/workspace/application-flow/client'
-alias apps='cd ~/workspace/application-flow/server'
-alias dbmi='cd ~/workspace/db-migrations'
-alias dbmo='cd ~/workspace/db-models'
-alias serverless='cd ~/workspace/serverless'
-alias ngrok='.~/workspace/ngrok http local.employer.expeditiondata.com:8043'
-alias pr='open "https://github.com/TheHiringEngine/${PWD##*/}/compare/$(git symbolic-ref --short -q HEAD)"'
+alias sc='cd ~/workspace/saas/saas-client'
+alias sa='cd ~/workspace/saas/saas-api'
+alias hoahq='cd ~/workspace/saas/'
+alias deploy='./deploy.sh'
+alias pgh='docker stop relay_db_1; brew services start postgresql'
+alias pgr='brew services stop postgresql; docker start relay_db_1'
+
+alias dev='cd ~/workspace/relay/dev-env'
+alias fe='cd ~/workspace/relay/api-v2-frontend'
+alias be='cd ~/workspace/relay/api-v2-backend'
+alias core='cd ~/workspace/relay/api-v2'
+alias rr='relay-run'
+alias rs='relay-sync'
+alias da='cd ~/workspace/relay/driver-app'
+
+alias pr='open "https://gitlab.dev/relay/${PWD##*/}/-/merge_requests/new?merge_request%5Bsource_branch%5D=$(git symbolic-ref --short -q HEAD)"'
 # --------------------
 
 # ----- Packages -----
@@ -40,11 +44,8 @@ PROMPT='%1/%F{yello}${vcs_info_msg_0_}%F{white} → '
 # Set iTerm Tab Title to Current Working Directory
 if [ $ITERM_SESSION_ID ]; then
 set_tab_title() {
-  echo -ne "\033]0;$(dirs)\007"
+  echo -ne "]0;$(dirs)"
 }
 add-zsh-hook precmd set_tab_title
 fi
 # --------------------------
-
-# Clean up squash and merge branches
-alias sweep='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
