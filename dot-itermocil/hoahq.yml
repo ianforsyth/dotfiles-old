@@ -1,0 +1,23 @@
+windows:
+  - name: hoahq-code
+    root: ~/workspace/saas
+    commands: 
+      - docker stop relay_db_1
+      - brew services start postgresql
+      - cd ~/workspace/saas
+      - vim .
+  - name: hoahq
+    root: ~/workspace/saas
+    layout: tiled
+    panes:
+      - commands:
+        - cd saas-client
+        - yarn start
+      - commands:
+        - cd saas-api
+        - rails s
+      - commands:
+        - cd saas-client
+      - commands:
+        - cd saas-api
+      - command: {}
