@@ -33,6 +33,7 @@ call plug#begin()
   Plug 'tpope/vim-rails'                              " Rails helpers
   Plug 'tpope/vim-rhubarb'                            " Open GitLab remote
   Plug 'tpope/vim-fugitive'                           " Git functionality
+  Plug 'mhinz/vim-startify'                           " Nice start screen
 call plug#end()
 
 " Set leader to space bar
@@ -55,11 +56,6 @@ let g:lightline = {
 \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
 \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 \}
-
-" --- UltiSnips configuration --- 
-let g:UltiSnipsSnippetsDir = '~/.vim/mysnippets'
-let g:UltiSnipsSnippetDirectories=["mysnippets"]
-let g:UltiSnipsJumpForwardTrigger='<tab>'
 
 " --- Fugitive GitLab config ---
 let g:fugitive_gitlab_domains = ['https://gitlab.dev/']
@@ -96,20 +92,36 @@ let g:ctrlsf_auto_preview = 1
 
 " --- CoC config ---
 let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-snippets', 'coc-solargraph'] " Install CoC extensions
+inoremap <expr> <tab> pumvisible() ? coc#_select_confirm() : "<tab>"
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+  
+" --- UltiSnips configuration --- 
+let g:UltiSnipsSnippetsDir = '~/.vim/mysnippets'
+let g:UltiSnipsSnippetDirectories=["mysnippets"]
+let g:UltiSnipsExpandTrigger='<C-Tab>' " Changing this so it doesn't override coc.nvim <tab>
 
 " --- NERDTree config ---
 let NERDTreeShowHidden=1
 
 " --- Color Scheme config ---
-if (has("termguicolors"))
-  set termguicolors
-endif
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
-syntax on
+set termguicolors
+:hi CocErrorHighlight guisp=red cterm=underline ctermul=red
+:hi CocWarningHighlight guisp=yellow cterm=underline ctermul=yellow
 
 " Line numbers
 set number
+
+" Don't create swap files
+set noswapfile
 
 " Softtabs, 2 spaces
 set expandtab
@@ -146,21 +158,30 @@ set hlsearch
 " delays and poor user experience.
 set updatetime=300
 
+" More logical split directions
+set splitbelow
+set splitright
+
 nmap ga <Plug>(coc-codeaction)
 nmap gn <Plug>(coc-rename)
 nmap gd <Plug>(coc-definition)
-nmap gf <Plug>(coc-fix-current)
-nmap gy <Plug>(coc-type-definition)
 nmap gi <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
 nmap ge <Plug>(coc-diagnostic-next)
+nmap gy <Plug>(coc-type-definition)
 nmap gc :call GitGutterNextHunkCycle()<cr>
+" nmap gf <Plug>(coc-fix-current)
+nmap gds :vsp<cr><Plug>(coc-definition)
+nmap gis :vsp<cr><Plug>(coc-implementation)
+nmap gdt :tabedit<cr><Plug>(coc-definition)
+nmap git :tabedit<cr><Plug>(coc-implementation)
 nnoremap <C-J> :m +1<CR>
 nnoremap <C-K> :m -2<CR>
-inoremap <expr> <tab> pumvisible() ? coc#_select_confirm() : "<tab>"
 inoremap jj <esc>:w<CR>
-nnoremap <leader>n :NERDTreeFind<CR>
+nnoremap <leader>w <C-w>w
+nnoremap <leader>s :NERDTreeFind<CR>
 nnoremap <leader>t :Files<CR>
+nnoremap <silent> t :call <SID>show_documentation()<CR>
 nmap <leader>f <Plug>CtrlSFPrompt ""<left>
 nmap <leader>F <Plug>CtrlSFCwordPath<cr>
 vmap <leader>F <Plug>CtrlSFVwordExec
