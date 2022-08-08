@@ -11,6 +11,10 @@ snippet us
 const [${1:name}, set${1/.*/\u$0/}] = useState<${2:type}>(${3:default});
 endsnippet
 
+snippet usf
+const [${1:name}, set${1/.*/\u$0/}] = useState(false);
+endsnippet
+
 snippet ci
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
