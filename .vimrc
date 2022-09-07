@@ -92,15 +92,18 @@ let g:ctrlsf_auto_preview = 1
 
 " --- CoC config ---
 let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-snippets', 'coc-solargraph'] " Install CoC extensions
-inoremap <expr> <tab> pumvisible() ? coc#_select_confirm() : "<tab>"
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackSpace() ? "\<TAB>" :
+      \ coc#refresh()
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
   
 " --- UltiSnips configuration --- 
 let g:UltiSnipsSnippetsDir = '~/.vim/mysnippets'
