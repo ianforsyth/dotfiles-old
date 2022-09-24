@@ -1,6 +1,6 @@
 [user]
   name = Ian Forsyth
-	email = ian@ianforsyth.com
+  email = ian@ianforsyth.com
 [alias]
   co = checkout
   cob = checkout -b
@@ -36,8 +36,8 @@
 [push]
   default = current
 [http]
-	sslVerify = false
+  sslVerify = false
 [pull]
-	rebase = true
+  rebase = true
 [rebase]
-	autoStash = true
+  autoStash = true
